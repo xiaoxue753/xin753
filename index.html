@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>数字信哥对话企业家 · 海南省广西商会数字IP打造完整方案</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+:root{
+  --ink:#0b1b2b;--ink2:#122a41;--ink3:#1b3a55;
+  --jade:#0fa678;--jade-d:#0b8a63;--jade-l:#e8f8f2;
+  --gold:#e0a92e;--gold-l:#fdf6e4;
+  --bg:#f4f7fa;--card:#fff;--text:#182b3d;--muted:#6a7d90;--line:#e4eaf0;
+  --r:16px;--shadow:0 4px 20px rgba(11,27,43,.06);--shadow-lg:0 14px 40px rgba(11,27,43,.12);
+  --sbw:256px;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+/* ---------- 进度条 ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:999;
+  background:linear-gradient(90deg,var(--jade),var(--gold));transition:width .08s linear}
+/* ---------- 口号循环播报条 ---------- */
+.slogan-bar{
+  position:sticky;top:0;z-index:250;height:38px;overflow:hidden;
+  background:linear-gradient(90deg,#0b1b2b,#123049 50%,#0b1b2b);
+  border-bottom:1px solid rgba(15,166,120,.35);
+  display:flex;align-items:center;
+}
+.slogan-track{display:flex;flex:0 0 auto;white-space:nowrap;
+  animation:marquee 20s linear infinite;will-change:transform}
+.slogan-track:hover{animation-play-state:paused}
+.slogan-track span{display:inline-flex;align-items:center;gap:14px;padding:0 28px;
+  font-size:13.5px;font-weight:700;color:#7fe3c2;letter-spacing:.8px}
+.slogan-track span i{width:5px;height:5px;border-radius:50%;background:#e0a92e;
+  display:inline-block;flex:0 0 5px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ---------- 侧边栏 ---------- */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sbw);z-index:300;
+  background:linear-gradient(180deg,#0b1b2b,#0f2740 55%,#0b1b2b);
+  color:#fff;display:flex;flex-direction:column;overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:4px}
+.brand{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{display:flex;align-items:center;gap:11px}
+.dot{width:32px;height:32px;flex:0 0 32px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--jade),#35d8a6);color:#04241a;font-weight:800;font-size:14px}
+.brand h3{font-size:14px;font-weight:700;letter-spacing:.3px}
+.brand p{font-size:11px;color:rgba(255,255,255,.42);margin-top:2px}
+.nav{padding:12px 10px 22px;display:flex;flex-direction:column;gap:2px}
+.nav-link{position:relative;display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;
+  color:rgba(255,255,255,.56);text-decoration:none;font-size:13px;transition:.22s}
+.nav-link .n{font-size:10.5px;font-weight:800;opacity:.55;min-width:19px;font-variant-numeric:tabular-nums}
+.nav-link:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav-link.active{background:rgba(15,166,120,.16);color:#fff}
+.nav-link.active .n{color:var(--jade);opacity:1}
+.nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:17px;border-radius:0 3px 3px 0;background:var(--jade)}
+.sb-foot{padding:12px 20px 18px;font-size:10.5px;color:rgba(255,255,255,.26);line-height:1.7;margin-top:auto}
+/* ---------- 移动端顶栏 ---------- */
+.topbar{display:none;position:fixed;top:0;left:0;right:0;height:54px;z-index:400;
+  background:rgba(11,27,43,.95);backdrop-filter:blur(12px);
+  align-items:center;justify-content:space-between;padding:0 16px;color:#fff}
+.tb-brand{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.tb-brand .dot{width:26px;height:26px;flex:0 0 26px;border-radius:8px;font-size:12px}
+.tb-menu{width:38px;height:38px;border:none;background:transparent;display:flex;
+  flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer}
+.tb-menu span{display:block;width:19px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+.tb-menu.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.tb-menu.on span:nth-child(2){opacity:0}
+.tb-menu.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.backdrop{position:fixed;inset:0;background:rgba(4,12,20,.55);z-index:290;opacity:0;
+  visibility:hidden;transition:.28s;backdrop-filter:blur(2px)}
+.backdrop.show{opacity:1;visibility:visible}
+/* ---------- 主体 ---------- */
+main{margin-left:var(--sbw);min-height:100vh}
+/* ---------- 封面 ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;
+  padding:110px clamp(22px,6vw,88px) 90px;
+  background:radial-gradient(1100px 680px at 14% 8%,#17405f 0%,#0b1b2b 55%,#06101a 100%);color:#fff}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb.a{width:400px;height:400px;background:#0fa678;opacity:.32;top:-90px;right:-80px;animation:float 15s ease-in-out infinite}
+.orb.b{width:320px;height:320px;background:#e0a92e;opacity:.16;bottom:-110px;left:6%;animation:float 20s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(34px,-34px)}}
+.hero-mesh{position:absolute;inset:0;opacity:.35;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at 30% 40%,#000 0%,transparent 72%);
+  -webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 0%,transparent 72%)}
+.hero-inner{position:relative;z-index:2;max-width:920px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.6px;
+  color:#7fe3c2;border:1px solid rgba(15,166,120,.35);background:rgba(15,166,120,.1);
+  padding:7px 15px;border-radius:999px;margin-bottom:24px;font-weight:600}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#35d8a6;display:block;
+  box-shadow:0 0 0 4px rgba(53,216,166,.16)}
+.hero h1{font-size:clamp(30px,5.2vw,58px);line-height:1.16;font-weight:800;letter-spacing:-1px}
+.grad{background:linear-gradient(100deg,#3ee0a8 10%,#e0a92e 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(15px,1.9vw,20px);color:rgba(255,255,255,.7);margin-top:18px;font-weight:500}
+.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.tag{font-size:12.5px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.82)}
+.slogan{margin-top:30px;padding:16px 22px;max-width:680px;border-left:3px solid var(--jade);
+  background:rgba(255,255,255,.05);border-radius:0 12px 12px 0;
+  font-size:clamp(14px,1.75vw,17px);font-weight:700;color:#dff6ee;letter-spacing:.6px}
+.slogan + .slogan{margin-top:12px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;
+  background:linear-gradient(135deg,var(--jade),#1fc794);color:#fff;font-size:14.5px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;transition:.25s;box-shadow:0 8px 24px rgba(15,166,120,.3)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 13px 32px rgba(15,166,120,.45)}
+.btn.ghost{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.13);box-shadow:none}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;
+  font-size:11.5px;color:rgba(255,255,255,.4);display:flex;flex-direction:column;
+  align-items:center;gap:8px;letter-spacing:1px}
+.scroll-hint i{width:1px;height:34px;background:linear-gradient(180deg,var(--jade),transparent);
+  display:block;animation:pulse 1.9s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+/* ---------- 区块 ---------- */
+.section{padding:clamp(54px,7vw,92px) clamp(20px,5vw,72px);max-width:1180px;margin:0 auto;
+  scroll-margin-top:64px}
+.section-head{margin-bottom:clamp(26px,4vw,42px)}
+.section-num{display:block;font-size:12.5px;font-weight:800;letter-spacing:2.5px;
+  color:var(--jade);margin-bottom:9px}
+.section-head h2{font-size:clamp(22px,3.2vw,33px);font-weight:800;letter-spacing:-.4px;line-height:1.3}
+.section-desc{margin-top:13px;color:var(--muted);font-size:14.5px;max-width:780px}
+.sub-h{font-size:16px;font-weight:800;margin:28px 0 14px;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+.sub-h::before{content:'';width:4px;height:17px;border-radius:2px;background:var(--jade)}
+.grid{display:grid;gap:16px}
+.auto{grid-template-columns:repeat(auto-fit,minmax(258px,1fr))}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:24px;box-shadow:var(--shadow);transition:transform .28s,box-shadow .28s,border-color .28s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cfe6dd}
+.card h3{font-size:16px;font-weight:800;margin-bottom:10px;letter-spacing:-.2px}
+.card p{font-size:14px;color:#41566b;line-height:1.8}
+.card.flat:hover{transform:none;box-shadow:var(--shadow);border-color:var(--line)}
+.kicker{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;
+  letter-spacing:1.2px;color:var(--jade-d);background:var(--jade-l);padding:4px 11px;
+  border-radius:999px;margin-bottom:13px}
+.kicker.gold{color:#9a7211;background:var(--gold-l)}
+.lead{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;
+  box-shadow:var(--shadow);font-size:15px;line-height:1.9;color:#33475b}
+.lead strong{color:var(--ink);font-weight:800}
+.hl{background:linear-gradient(180deg,transparent 62%,rgba(15,166,120,.22) 62%);font-weight:700;color:var(--ink)}
+/* 底层逻辑链条 */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+.chain .node{background:var(--jade-l);color:var(--jade-d);font-size:13px;font-weight:700;
+  padding:9px 15px;border-radius:10px;border:1px solid #cdeee2}
+.chain .arrow{color:var(--jade);font-weight:800;font-size:14px}
+/* 商会优势卡片 */
+.adv-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:24px;box-shadow:var(--shadow);transition:.28s;overflow:hidden}
+.adv-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cfe6dd}
+.adv-card .adv-no{position:absolute;right:16px;top:12px;font-size:38px;font-weight:900;
+  color:#eef4f8;line-height:1;letter-spacing:-2px;pointer-events:none}
+.adv-card h3{font-size:15.5px;font-weight:800;margin-bottom:14px;position:relative;z-index:1}
+.adv-card ul{list-style:none;display:flex;flex-direction:column;gap:9px;position:relative;z-index:1}
+.adv-card li{font-size:13.5px;color:#41566b;line-height:1.75;padding-left:16px;position:relative}
+.adv-card li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;
+  border-radius:50%;background:var(--jade)}
+.adv-card li b{color:var(--ink);font-weight:700}
+/* 痛点 */
+.pain{display:flex;gap:15px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);transition:.25s}
+.pain:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#f3d9c9}
+.pain .pn{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:#fdf0e8;color:#c25a2b;font-weight:800;font-size:13px}
+.pain p{font-size:14px;color:#41566b;margin:0}
+/* 立项书卡片 */
+.ipcard{position:relative;overflow:hidden}
+.ipcard .idx{font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:var(--jade);
+  display:block;margin-bottom:10px}
+.ipcard::after{content:'';position:absolute;right:-30px;top:-30px;width:88px;height:88px;
+  border-radius:50%;background:var(--jade-l);opacity:.55;transition:.35s}
+.ipcard:hover::after{transform:scale(1.35);opacity:.8}
+.ipcard>*{position:relative;z-index:1}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip{font-size:12px;padding:4px 11px;border-radius:999px;background:#f1f5f9;color:#4a5f74;font-weight:600}
+.chip.j{background:var(--jade-l);color:var(--jade-d)}
+.chip.g{background:var(--gold-l);color:#9a7211}
+/* 选项卡 */
+.tab-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab-btn{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;
+  font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;transition:.22s;font-family:inherit}
+.tab-btn:hover{border-color:#b9d9cd;color:var(--jade-d)}
+.tab-btn.active{background:linear-gradient(135deg,var(--ink),var(--ink3));color:#fff;border-color:transparent;
+  box-shadow:0 8px 22px rgba(11,27,43,.22)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .38s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* 手风琴 */
+.acc{display:flex;flex-direction:column;gap:10px}
+.acc-item{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  transition:border-color .25s,box-shadow .25s}
+.acc-item.open{border-color:#bfe3d6;box-shadow:var(--shadow)}
+.acc-head{width:100%;display:flex;align-items:center;gap:14px;padding:17px 22px;background:none;
+  border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;color:var(--ink);
+  text-align:left;transition:.2s}
+.acc-head:hover{background:#fafcfd}
+.acc-head .badge{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:8px;
+  background:var(--jade-l);color:var(--jade-d)}
+.acc-head .arrow{margin-left:auto;flex:0 0 auto;width:22px;height:22px;display:grid;place-items:center;
+  color:var(--muted);transition:transform .3s;font-size:12px}
+.acc-item.open .acc-head .arrow{transform:rotate(180deg);color:var(--jade)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.acc-inner{padding:0 22px 20px;font-size:14px;color:#41566b;line-height:1.85}
+.acc-inner ul{padding-left:18px}
+.acc-inner li{margin-bottom:6px}
+.acc-inner p + p{margin-top:12px}
+/* 流程步骤 */
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.step{flex:1 1 150px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;
+  cursor:pointer;transition:.25s;text-align:left;font-family:inherit}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#bfe3d6}
+.step.active{background:linear-gradient(150deg,#0f2740,#0b1b2b);border-color:transparent;
+  box-shadow:0 14px 34px rgba(11,27,43,.28)}
+.step .sn{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--jade);display:block;margin-bottom:7px}
+.step.active .sn{color:#4fe0b0}
+.step .st{font-size:14.5px;font-weight:800;color:var(--ink);display:block}
+.step.active .st{color:#fff}
+.step .sd{font-size:12px;color:var(--muted);margin-top:4px;display:block}
+.step.active .sd{color:rgba(255,255,255,.6)}
+.step-detail{display:none}
+.step-detail.active{display:block;animation:fadeIn .38s ease}
+/* 媒介 */
+.media-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;
+  box-shadow:var(--shadow);transition:.28s}
+.media-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.media-card h3{font-size:17px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.media-card h3 span{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  font-size:14px;background:var(--jade-l)}
+.media-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+.media-list li{display:flex;gap:10px;font-size:14px;color:#41566b;line-height:1.7}
+.media-list li b{color:var(--ink);font-weight:700}
+.media-list li::before{content:'';flex:0 0 6px;height:6px;border-radius:50%;background:var(--jade);
+  margin-top:9px}
+/* KPI */
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;
+  box-shadow:var(--shadow);transition:.28s;position:relative;overflow:hidden}
+.kpi:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#bfe3d6}
+.kpi .kt{font-size:12px;font-weight:800;letter-spacing:1.4px;color:var(--muted);margin-bottom:12px}
+.kpi .kv{font-size:17px;font-weight:800;color:var(--ink);line-height:1.4}
+.kpi .kd{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.7}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--jade),var(--gold));opacity:0;transition:.3s}
+.kpi:hover::before{opacity:1}
+/* 风险 */
+.risk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;
+  box-shadow:var(--shadow);transition:.25s}
+.risk:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cfe6dd}
+.risk .rt{font-size:14.5px;font-weight:800;color:#b8562a;display:flex;gap:9px;align-items:flex-start;
+  margin-bottom:12px;line-height:1.6}
+.risk .rt i{flex:0 0 22px;height:22px;border-radius:7px;background:#fdf0e8;display:grid;
+  place-items:center;font-style:normal;font-size:12px;font-weight:800;color:#c25a2b;margin-top:2px}
+.risk .rs{font-size:13.5px;color:#41566b;line-height:1.8;padding-left:31px;position:relative}
+.risk .rs::before{content:'→';position:absolute;left:9px;color:var(--jade);font-weight:800}
+/* 交付清单 */
+.deliver{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;
+  box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;transition:.25s}
+.deliver:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cfe6dd}
+.deliver .dn{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--ink),var(--ink3));color:#fff;font-weight:800;font-size:13px}
+.deliver h3{font-size:14.5px;font-weight:800;margin-bottom:6px}
+.deliver p{font-size:13.5px;color:#5a6f83;line-height:1.75}
+/* 总结 */
+.final{background:radial-gradient(900px 500px at 15% 0%,#173a58 0%,#0b1b2b 60%,#071320 100%);
+  color:#fff;border-radius:24px;padding:clamp(34px,5vw,58px);position:relative;overflow:hidden;
+  box-shadow:0 24px 60px rgba(11,27,43,.28)}
+.final::after{content:'';position:absolute;width:340px;height:340px;border-radius:50%;
+  background:#0fa678;opacity:.22;filter:blur(90px);right:-90px;bottom:-120px}
+.final-inner{position:relative;z-index:2}
+.final h3{font-size:clamp(19px,2.6vw,26px);font-weight:800;line-height:1.55;letter-spacing:-.3px}
+.final p{color:rgba(255,255,255,.66);font-size:14.5px;margin-top:16px;max-width:780px}
+.final .slogan{margin-top:24px;background:rgba(255,255,255,.06)}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.action{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:20px;transition:.28s}
+.action:hover{background:rgba(255,255,255,.11);transform:translateY(-3px)}
+.action .an{font-size:11.5px;font-weight:800;letter-spacing:1.4px;color:#4fe0b0}
+.action h4{font-size:15.5px;font-weight:800;margin:9px 0 6px;color:#fff}
+.action p{font-size:13px;color:rgba(255,255,255,.6);margin:0}
+.thanks{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);
+  font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.9}
+/* 页脚 */
+.footer{text-align:center;padding:40px 24px 56px;font-size:12.5px;color:var(--muted);line-height:2}
+/* 回到顶部 */
+#toTop{position:fixed;right:20px;bottom:24px;width:46px;height:46px;border-radius:50%;border:none;
+  background:var(--ink);color:#fff;font-size:17px;cursor:pointer;z-index:200;
+  display:grid;place-items:center;box-shadow:0 10px 28px rgba(11,27,43,.3);
+  opacity:0;visibility:hidden;transform:translateY(14px);transition:.3s}
+#toTop.show{opacity:1;visibility:visible;transform:none}
+#toTop:hover{background:var(--jade)}
+/* 入场动画 */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),
+  transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+[data-stagger]>*{opacity:0}
+[data-stagger].in>*{opacity:1;animation:fadeUp .62s cubic-bezier(.2,.7,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* ---------- 响应式 ---------- */
+@media (max-width:960px){
+  .sidebar{transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+    width:274px;box-shadow:0 0 50px rgba(0,0,0,.4)}
+  .sidebar.open{transform:translateX(0)}
+  .topbar{display:flex}
+  main{margin-left:0;padding-top:54px}
+  #progress{top:54px}
+  .slogan-bar{top:54px}
+  .hero{min-height:calc(100vh - 54px);padding-top:64px}
+  .scroll-hint{display:none}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .actions{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .card,.adv-card,.media-card{padding:20px}
+  .step{flex:1 1 100%}
+  .hero{padding-bottom:64px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  #toTop{right:14px;bottom:16px;width:42px;height:42px}
+  .chain{flex-direction:column;align-items:stretch}
+  .chain .arrow{text-align:center;transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- 移动端顶栏 -->
+<div class="topbar">
+  <div class="tb-brand"><span class="dot">信</span> 数字信哥对话企业家</div>
+  <button class="tb-menu" id="menuBtn" aria-label="打开菜单"><span></span><span></span><span></span></button>
+</div>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- 侧边栏 -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="logo">
+      <span class="dot">信</span>
+      <div>
+        <h3>数字信哥对话企业家</h3>
+        <p>海南省广西商会 · 数字IP完整方案</p>
+      </div>
+    </div>
+  </div>
+  <nav class="nav">
+    <a class="nav-link" href="#overview"><span class="n">01</span>项目总览</a>
+    <a class="nav-link" href="#advantage"><span class="n">02</span>商会核心优势</a>
+    <a class="nav-link" href="#background"><span class="n">03</span>背景与需求</a>
+    <a class="nav-link" href="#ip"><span class="n">04</span>数字IP立项书</a>
+    <a class="nav-link" href="#strategy"><span class="n">05</span>核心策略</a>
+    <a class="nav-link" href="#program"><span class="n">06</span>栏目与嘉宾</a>
+    <a class="nav-link" href="#flow"><span class="n">07</span>访谈流程</a>
+    <a class="nav-link" href="#media"><span class="n">08</span>媒介运营</a>
+    <a class="nav-link" href="#risk"><span class="n">09</span>风险与可行性</a>
+    <a class="nav-link" href="#deliver"><span class="n">10</span>课程交付成果</a>
+    <a class="nav-link" href="#summary"><span class="n">11</span>总结与行动</a>
+  </nav>
+  <div class="sb-foot">
+    课程作业 · 校企协作竞赛<br>方向D：企业家精神
+  </div>
+</aside>
+
+<main>
+
+  <!-- 口号循环播报条 -->
+  <div class="slogan-bar" aria-label="项目口号循环播报">
+    <div class="slogan-track">
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+      <span><i></i>听桂商故事，悟实干力量｜琼桂聚力，听桂商讲实干人生</span>
+    </div>
+  </div>
+
+  <!-- ============ 封面 ============ -->
+  <header class="hero" id="top">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="hero-mesh"></div>
+    <div class="hero-inner">
+      <div class="eyebrow"><i></i>课程作业 · 校企协作竞赛 · 方向D</div>
+      <h1>海南省广西商会<br><span class="grad">数字IP打造</span>完整方案</h1>
+      <p class="hero-sub">数字信哥对话企业家 · 会员企业家访谈模式</p>
+      <div class="hero-tags">
+        <span class="tag">AI数字人IP</span>
+        <span class="tag">企业家精神</span>
+        <span class="tag">桂商创业</span>
+        <span class="tag">以人见精神</span>
+        <span class="tag">琼桂两地</span>
+      </div>
+      <div class="slogan">琼桂聚力，听桂商讲实干人生</div>
+      <div class="slogan" style="border-left-color:#e0a92e;color:#fdf0d4">
+        听桂商故事，悟实干力量
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#overview">开始了解 ↓</a>
+        <a class="btn ghost" href="#strategy">直达核心策略</a>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>SCROLL</span><i></i></div>
+  </header>
+
+  <!-- ============ 01 项目总览 ============ -->
+  <section class="section" id="overview">
+    <div class="section-head reveal">
+      <span class="section-num">01 / PROJECT OVERVIEW</span>
+      <h2>项目总览</h2>
+      <p class="section-desc">一个由 AI 数字人担任主持人、由商会会员企业家亲自讲述创业实干故事的访谈栏目。</p>
+    </div>
+
+    <div class="lead reveal">
+      本项目服务 <strong>海南省广西商会</strong>，打造 AI 数字人 IP <strong>「数字信哥」</strong>。创新采用
+      <span class="hl">AI 数字信哥担任主持人，每期邀请商会内优秀桂商企业家作为受访嘉宾</span>，
+      挖掘创业历程、经营智慧、企业社会责任、琼桂两地发展故事，
+      将企业家的实干经验转化为中小企业、桂商创业者看得懂、可借鉴、可感知的内容。
+      <div class="chain">
+        <span class="node">挖掘桂商企业故事</span>
+        <span class="arrow">→</span>
+        <span class="node">数字信哥建立信任IP</span>
+        <span class="arrow">→</span>
+        <span class="node">数字人对话企业家</span>
+        <span class="arrow">→</span>
+        <span class="node">依托商会资源凝聚琼桂商业力量</span>
+      </div>
+      <p style="margin-top:16px;font-size:13.5px;color:var(--muted)">
+        对标参考：海南省广西商会视频号「海南广西商会-信哥」公开内容，延续桂商务实接地气风格，升级为去个人化 AI 数字人 IP。
+      </p>
+    </div>
+
+    <h3 class="sub-h reveal">核心价值</h3>
+    <div class="grid g3" data-stagger>
+      <div class="card">
+        <span class="kicker">商会层面</span>
+        <h3>数字化人格 · 不受换届影响</h3>
+        <p>打造不受人事换届影响的数字化人格；传承商会乡情底色、资源优势与公信力；传播桂商企业家精神，增强商会凝聚力。</p>
+      </div>
+      <div class="card">
+        <span class="kicker">企业层面</span>
+        <h3>合理曝光 · 传递实干</h3>
+        <p>会员企业获得合理曝光，通过个人创业故事传递经营智慧与社会责任；依托商会平台获得更多业务、政企对接机会。</p>
+      </div>
+      <div class="card">
+        <span class="kicker">用户层面</span>
+        <h3>真实故事 · 摆脱空谈</h3>
+        <p>从企业家的真实经历中理解商业判断与实干方法，摆脱空洞的成功学叙事；同时感受海南省广西商会的乡情与服务能力。</p>
+      </div>
+    </div>
+
+    <h3 class="sub-h reveal">小组基础信息</h3>
+    <div class="grid g3" data-stagger>
+      <div class="card flat">
+        <span class="kicker gold">策划</span>
+        <h3>IP策略 & 全案</h3>
+        <p>IP策略、立项书撰写、全案策划、选题与内容审核。</p>
+      </div>
+      <div class="card flat">
+        <span class="kicker gold">媒介</span>
+        <h3>平台运营 & 脚本</h3>
+        <p>平台运营、脚本撰写、话题策划、社群分发。</p>
+      </div>
+      <div class="card flat">
+        <span class="kicker gold">执行</span>
+        <h3>制作 & 视觉</h3>
+        <p>AI数字人制作、素材剪辑、样片、视觉物料制作。</p>
+      </div>
+    </div>
+
+    <div class="card flat reveal" style="margin-top:16px">
+      <span class="kicker">工具与阵地</span>
+      <div class="chips">
+        <span class="chip j">剪映数字人</span>
+        <span class="chip j">即梦AI</span>
+        <span class="chip j">小云雀AI数字人</span>
+        <span class="chip j">剪映</span>
+        <span class="chip g">微信视频号</span>
+        <span class="chip g">抖音</span>
+        <span class="chip g">微信公众号</span>
+        <span class="chip g">商会社群</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 商会核心优势 ============ -->
+  <section class="section" id="advantage">
+    <div class="section-head reveal">
+      <span class="section-num">02 / WHY THIS CHAMBER</span>
+      <h2>商会核心特点与优势</h2>
+      <p class="section-desc">这是数字信哥 IP 的信任底座：资质、乡情、资源、内容、活动、理念、公益七个维度。</p>
+    </div>
+
+    <div class="grid g2" data-stagger>
+      <div class="adv-card">
+        <span class="adv-no">01</span>
+        <h3>资质荣誉硬实力（信任感基础）</h3>
+        <ul>
+          <li><b>官方认证资质：</b>5A级社会组织、海南省“四好商会”、海南省先进社会组织，属于海南等级很高的社会团体，正规靠谱，并非松散社交小圈子。</li>
+          <li><b>发展积淀深厚：</b>成立十余年，组织架构完善，下设退役军人委员会、妇委会等专项分支，覆盖多元会员群体。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card">
+        <span class="adv-no">02</span>
+        <h3>核心底色：乡情纽带（情感吸引力）</h3>
+        <ul>
+          <li>以广西老乡情谊凝聚在琼桂商，秉持“以乡情聚人，以商道立会”。为异乡打拼的广西籍创业者打造“老乡大家庭”，入会即可获得同乡人脉网络。</li>
+          <li>富有人文温度，不止谈商业合作：开展桂商助学、困难会员家庭帮扶；会员遭遇困境时商会主动关怀，给会员带来强烈情感归属感。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card">
+        <span class="adv-no">03</span>
+        <h3>会员实用价值：商业资源与权益保障</h3>
+        <ul>
+          <li><b>资源对接平台：</b>常态化组织交流会、企业走访、展会活动，促成会员业务合作、资源互换，助力企业开拓海南自贸港市场。</li>
+          <li><b>会员权益保障：</b>配备法律顾问，会员遭遇商业纠纷，商会协助调解、提供法律支持，为会员企业经营保驾护航。</li>
+          <li><b>琼桂两地双向桥梁：</b>联动海南、广西两地政企资源，既帮助广西企业落地自贸港，也助力海南企业开拓广西市场，提供政策咨询服务。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card">
+        <span class="adv-no">04</span>
+        <h3>现有IP与内容基础（短视频可继承优势）</h3>
+        <ul>
+          <li><b>原有真人IP基础：</b>秘书长“信哥”拥有退役军人背景，形象真诚仗义，塑造“靠谱、守信”的个人人设；视频号已发布“会员风采展播”等系列，降低大众距离感。</li>
+          <li><b>内容真实透明：</b>会务、企业走访、公益行动、纠纷调解实拍记录，少过度包装，外界可直观了解商会真实运营状态，为数字IP延续信任打下内容根基。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card">
+        <span class="adv-no">05</span>
+        <h3>完善的活动体系，持续链接人脉</h3>
+        <ul>
+          <li><b>高频常态化活动：</b>茶话会、闭门研讨会、企业走访、节日主题活动、研学考察（平陆运河实地探访等），创造会员高频交流场景，持续拓展人脉。</li>
+          <li><b>细分圈层运营：</b>开设退役军人专场、女企业家交流等主题活动，匹配不同会员群体社交诉求。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card">
+        <span class="adv-no">06</span>
+        <h3>价值理念：拒绝浅层饭局社交</h3>
+        <ul>
+          <li><b>五层价值体系：</b>乡情链接 → 人脉关系 → 业务合作 → 共同成长 → 资本对接，跳出单纯吃喝社交，追求会员企业长期共生发展。</li>
+          <li><b>服务宗旨：</b>服务会员、服务社会、服务政府；承接政企交流，协助会员读懂自贸港政策、打通政企对接渠道。</li>
+        </ul>
+      </div>
+
+      <div class="adv-card" style="grid-column:1/-1">
+        <span class="adv-no">07</span>
+        <h3>践行公益，社会口碑良好</h3>
+        <ul>
+          <li>持续落地助学、帮扶等公益项目，履行社会责任；会员可参与公益活动，提升个人与企业社会形象。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 背景与需求 ============ -->
+  <section class="section" id="background">
+    <div class="section-head reveal">
+      <span class="section-num">03 / BACKGROUND</span>
+      <h2>项目背景与需求</h2>
+      <p class="section-desc">商会为什么要做这件事？现有企业家故事传播到底卡在哪？</p>
+    </div>
+
+    <div class="card flat reveal" style="margin-bottom:22px">
+      <span class="kicker">商会数字化诉求</span>
+      <p>海南自贸港封关运作后，企业主体增长进入加速期。封关以来至2026年5月31日，海南新增经营主体
+      <strong>17.21万家</strong>，同比增长61.07%，其中新增企业<strong>13.95万家</strong>，同比增长123.04%。
+      政策红利正在转化为真实的创业与经营行为，大量桂籍企业家在这一窗口期扎根海南。商会现有真人“信哥”短视频账号已经积累信任与人气，
+      但内容绑定秘书长个人。商会希望打造 <span class="hl">去个人化 AI 数字 IP</span>，IP 所有权归属商会，
+      不因人员换届、人事变动造成宣传断档，承接商会全部资源、文化、服务职能，对外输出企业家故事、会员风采、桂商精神。
+      本次选取四大内容方向中的 <strong>方向D：企业家精神</strong>。</p>
+    </div>
+
+    <h3 class="sub-h reveal">现存痛点</h3>
+    <div class="grid g2" data-stagger>
+      <div class="pain"><span class="pn">01</span><p>桂商群体缺少集中的故事出口，大众不了解在琼桂商的奋斗历程。</p></div>
+      <div class="pain"><span class="pn">02</span><p>网络上的成功叙事往往过滤掉关键困难，创业者缺少真实可借鉴的实战经验。</p></div>
+      <div class="pain"><span class="pn">03</span><p>商会内容以图文通报和会员动态为主，对非会员缺乏“可看性”。</p></div>
+      <div class="pain"><span class="pn">04</span><p>原有真人账号依赖个人，人员变动会造成宣传中断。</p></div>
+    </div>
+
+    <div class="lead reveal" style="margin-top:22px;border-left:4px solid var(--jade)">
+      <span class="kicker">创新解决方案</span>
+      <p style="margin-top:6px">每期聚焦一个“实干切片”：一个关键决策、一次危机应对、一段琼桂之间的资源连接。
+      企业家结合个人创业历程、经营困难、责任担当亲身讲述，实现
+      <span class="hl">一位企业家，一个真实的实干故事</span>。数字信哥继承商会“靠谱、守信、乡情为重”的特质，
+      把商会的资源、法律服务、政企桥梁等隐性价值，通过短视频内容可视化传递出去。</p>
+    </div>
+
+    <h3 class="sub-h reveal">目标受众</h3>
+    <div class="grid g2" data-stagger>
+      <div class="card">
+        <span class="kicker">核心受众</span>
+        <h3>30–55岁在琼桂商、商会会员企业主</h3>
+        <p><strong>痛点：</strong>希望获取可参照的实战经验与商会内部的人脉信号，缺少同行的真实创业故事。<br>
+        <strong>习惯：</strong>通过视频号、抖音短视频获取干货，偏好碎片化纪实访谈内容。</p>
+      </div>
+      <div class="card">
+        <span class="kicker gold">次要受众</span>
+        <h3>意向来琼创业者、商科与会展学生</h3>
+        <p>关注在琼创业的真实经验、落地成本与政策确定性，需要真实可参考的案例来判断是否入场。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 立项书 ============ -->
+  <section class="section" id="ip">
+    <div class="section-head reveal">
+      <span class="section-num">04 / IP PROPOSAL</span>
+      <h2>数字IP立项书 · 七要素</h2>
+      <p class="section-desc">IP 是什么、像谁、说什么、靠什么做、怎么落地。</p>
+    </div>
+
+    <div class="grid auto" data-stagger>
+      <div class="card ipcard">
+        <span class="idx">要素 01 · 核心创意</span>
+        <h3>IP人设：数字信哥</h3>
+        <p><strong>形象：</strong>中年儒雅商务男性，简约商务正装，气质稳重亲和，面部与体态保留适度的“广西乡土质感”，不追求过度精致的虚拟偶像感，而接近一位可信赖的“商会老友”。<br>
+        <strong>性格：</strong>真诚务实、善于倾听、提问不炫技，懂商业也懂乡情，不做居高临下的点评。<br>
+        <strong>口头禅：</strong>听桂商故事，悟实干力量。</p>
+        <div class="chips">
+          <span class="chip j">真诚务实</span>
+          <span class="chip j">善于倾听</span>
+          <span class="chip g">琼桂聚力，听桂商讲实干人生</span>
+        </div>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 02 · 内容主攻</span>
+        <h3>方向D：企业家精神</h3>
+        <p>访谈对象以海南省广西商会会员企业负责人为主体，覆盖贸易流通、实业制造、跨境服务、退役军人创业等类型。每期聚焦一个“实干切片”，不把访谈做成企业宣传片，优先保留“不顺利的部分”。</p>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 03 · 目标受众</span>
+        <h3>在琼桂商 · 意向来琼者</h3>
+        <p><strong>核心：</strong>海南省广西商会会员、在琼桂籍企业家及创业者，30—55岁；痛点是缺少集中故事出口、缺少可参照的实战经验。<br>
+        <strong>次要：</strong>意向来琼创业的广西籍青年、商科与会展专业学生、泛商业人群。<br>
+        <strong>习惯：</strong>视频号/抖音碎片化观看，偏好1—3分钟纪实访谈切片。</p>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 04 · 核心创意一句话</span>
+        <h3>虚拟访谈 · 以人见精神</h3>
+        <p>以AI数字人“数字信哥”虚拟访谈在琼桂商企业家，用对话保留创业实干中“不光滑”的部分，让桂商精神从口号变成可感知的个体经验。</p>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 05 · 媒介与技术载体</span>
+        <h3>数字人主持 + 真人混剪</h3>
+        <p><strong>技术：</strong>剪映数字人（主力口播与串场，零门槛、免费/VIP 25元/月）/ 即梦AI（IP形象个性化训练与迭代，Pro版68元/月起），数字人主持，混剪企业家真人采访素材。<br>
+        <strong>分发：</strong>视频号（主阵地）、抖音（公域触达）；辅助：商会公众号、会员微信群。<br>
+        <strong>工作流：</strong>口播稿 → 剪映数字人生成串场视频 → 即梦AI生成/迭代专属形象素材 → 剪映完成剪辑、字幕、包装。</p>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 06 · 三动作落地设想</span>
+        <h3>玩起来 · 传起来 · 创起来</h3>
+        <p><strong>玩起来：</strong>视频号每期预告下发布“你想问企业家什么”问题征集，数字信哥选取1—2个问题带入正式访谈，成片标注提问网友ID。<br>
+        <strong>传起来：</strong>每期完整访谈剪出2—3条60—90秒高光切片，由受访企业家本人转发朋友圈，商会会员群同步推送。<br>
+        <strong>创起来：</strong>发起 #我的桂商实干故事 话题，征集30—60秒竖屏自述或文字故事，优质内容由数字信哥做“回应式”串场转载。</p>
+      </div>
+
+      <div class="card ipcard">
+        <span class="idx">要素 07 · 调研证据</span>
+        <h3>账号 · 官方资料 · 资源基础</h3>
+        <p>① 抖音/视频号账号：海南广西商会-信哥，已发布“会员风采展播”系列，验证商会具备持续内容产出意愿与企业家出镜基础；<br>
+        ② 官方资料：海南省广西商会公众号、商会资质公开资料、自贸港相关政策文件；<br>
+        ③ 资源基础：商会十余年沉淀，拥有大量会员企业、专项委员会，可作为访谈嘉宾储备库。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 核心策略 ============ -->
+  <section class="section" id="strategy">
+    <div class="section-head reveal">
+      <span class="section-num">05 / CORE STRATEGY</span>
+      <h2>核心策略：一核 · 一驱 · 三动作</h2>
+      <p class="section-desc">用一句话说清楚：谁来讲、靠什么讲、讲完怎么扩散。</p>
+    </div>
+
+    <div class="tabs reveal">
+      <div class="tab-btns">
+        <button class="tab-btn active" data-tab="tab-core">一核 · 核心创意</button>
+        <button class="tab-btn" data-tab="tab-drive">一驱 · 技术媒介</button>
+        <button class="tab-btn" data-tab="tab-act">三动作 · 执行</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-core">
+        <div class="lead">
+          <span class="kicker">Core Idea</span>
+          <p style="margin-top:6px">AI 数字人 IP「数字信哥」，Slogan：<strong>琼桂聚力，听桂商讲实干人生</strong>。
+          模式为 <span class="hl">AI数字信哥主持人 + 会员企业家访谈</span>。数字信哥以“商会独立访谈者”的身份，
+          继承海南省广西商会的资质公信力、乡情人文底色；负责提问、停顿、追问，而不是总结和升华；
+          企业家输出一线实战经历，二者互补建立受众信任；IP 归属商会，不受人事换届影响。</p>
+        </div>
+        <div class="grid g3" style="margin-top:16px" data-stagger>
+          <div class="card flat"><h3>数字信哥</h3><p>继承商会公信力与乡情底色，负责提问引导、倾听追问、要点总结。稳定输出，不受人事变动影响。</p></div>
+          <div class="card flat"><h3>会员企业家</h3><p>个人创业历程、经营困难、责任担当的真实讲述。讲机遇，也讲难题。</p></div>
+          <div class="card flat"><h3>二者互补</h3><p>倾听式提问 + 一线实干经验 = 可信、可感、可借鉴的企业家故事内容。</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-drive">
+        <div class="lead">
+          <span class="kicker">技术驱动</span>
+          <p style="margin-top:6px">剪映数字人、即梦 AI 生成数字信哥主持片段；企业家部分采用真人实拍采访，剪辑合成成片，
+          学生团队低成本完成样片。视频号作为主阵地，是因为商会内容传播依赖会员社交关系链：
+          企业家转发朋友圈、会员群二次扩散，比公域投流更贴合这一群体的信息接收习惯。</p>
+        </div>
+        <div class="grid g3" style="margin-top:16px" data-stagger>
+          <div class="card">
+            <span class="kicker">主阵地</span>
+            <h3>视频号</h3>
+            <p>完整访谈 + 高光切片，适配商会社交传播链路，便于企业家转发扩散。</p>
+          </div>
+          <div class="card">
+            <span class="kicker">公域</span>
+            <h3>抖音</h3>
+            <p>60–90 秒高光切片、金句片段，面向公域拉新。</p>
+          </div>
+          <div class="card">
+            <span class="kicker gold">深度 + 私域</span>
+            <h3>公众号 + 会员群</h3>
+            <p>公众号承载完整访谈实录与企业家简介；会员群私域分发，形成圈层裂变。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-act">
+        <div class="acc" id="acc-act">
+          <div class="acc-item open">
+            <button class="acc-head"><span class="badge">玩起来</span>互动体验 · 观众提问征集<span class="arrow">▾</span></button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <ul>
+                  <li>视频号每期预告下发布“你想问企业家什么”问题征集，观众写下想咨询的创业、经营相关问题；</li>
+                  <li>数字信哥筛选优质网友问题，在正式访谈中向企业家提问，成片标注提问网友ID；</li>
+                  <li>实现线上观众参与访谈，增强观众参与互动感；</li>
+                  <li>评论区持续收集下期想要了解的企业家话题。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><span class="badge">传起来</span>内容主动分享 · 圈层裂变<span class="arrow">▾</span></button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <ul>
+                  <li>每期完整访谈之外，剪辑多条60—90秒高光短视频片段，截取创业感悟、金句片段；</li>
+                  <li>受访企业家本人转发朋友圈，商会官方账号、会员群同步分发；</li>
+                  <li>高光切片不追求“金句包装”，优先截取企业家讲述具体困难的片段——困难比成功更具传播力和信任度；</li>
+                  <li>实现企业家故事传播 + 会员企业曝光 + 商会平台价值传播三重效果。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><span class="badge">创起来</span>UGC二次创作 · 嘉宾招募<span class="arrow">▾</span></button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <ul>
+                  <li>发起 #我的桂商实干故事 话题活动；</li>
+                  <li>面向商会会员、企业员工征集30—60秒竖屏自述或文字故事；</li>
+                  <li>优质UGC经整理后在账号转载，并可成为下一期数字信哥向企业家提问的素材来源；</li>
+                  <li>视频末尾开放会员嘉宾报名入口，持续扩充访谈嘉宾库。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal" style="margin-top:24px">
+      <div class="acc-item">
+        <button class="acc-head"><span class="badge">500字</span>完整策略思路（点击展开）<span class="arrow">▾</span></button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <p><strong>一核：</strong>核心创意是让AI数字人“数字信哥”以“商会独立访谈者”的身份，对话在琼桂商企业家。Slogan“琼桂聚力，听桂商讲实干人生”确立栏目的情感锚点：不渲染传奇，不回避困难，把企业家精神还原为具体的人在具体情境中的选择。数字信哥的虚拟人格规避了真人主持流动对栏目连续性的冲击，其“倾听者”定位则避免了AI说教感的常见陷阱——他的功能是提问、停顿、追问，而不是总结和升华。</p>
+            <p><strong>一驱：</strong>技术驱动的核心逻辑是“用工具换可持续性”。剪映数字人解决串场与口播的常态化产出，零门槛、免费起步，确保三人小组在课程周期内跑通完整流程；即梦AI解决IP形象的个性化——通过照片训练生成具有“数字信哥”辨识度的稳定面部与体态，避免公模形象带来的廉价感。视频号作为主阵地，是因为商会内容传播依赖会员社交关系链：企业家转发朋友圈、会员群二次扩散，比公域投流更贴合这一群体的信息接收习惯。</p>
+            <p><strong>玩起来：</strong>评论区问题征集把观众从“看的人”变成“问的人”，数字信哥在访谈中念出网友ID，形成轻量但真实的参与闭环。</p>
+            <p><strong>传起来：</strong>高光切片不追求“金句包装”，优先截取企业家讲述具体困难的片段——困难比成功更具传播力和信任度；企业家本人转发是私域启动的关键动作。</p>
+            <p><strong>创起来：</strong>#我的桂商实干故事 话题的UGC征集，重点不在数量而在“可被访谈引用”：优质UGC可以成为下一期数字信哥向企业家提问的素材来源，形成栏目内容的自循环。</p>
+            <p>这一项目的核心价值不在于AI技术本身，而在于用低成本数字人工具，为商会填补一档“不依赖特定真人、可持续迭代”的企业家叙事产品。对课程作业而言，它具备完整可执行的工作流；对商会而言，它留下的是一个可以继续运营的内容框架。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 栏目与嘉宾 ============ -->
+  <section class="section" id="program">
+    <div class="section-head reveal">
+      <span class="section-num">06 / PROGRAM</span>
+      <h2>栏目规划与嘉宾访谈机制</h2>
+      <p class="section-desc">栏目名称《数字信哥对话企业家》，两条产品线 + 十个选题 + 一套嘉宾筛选标准。</p>
+    </div>
+
+    <div class="grid g2" data-stagger style="margin-bottom:28px">
+      <div class="card">
+        <span class="kicker">栏目一</span>
+        <h3>完整版访谈 · 2–3分钟</h3>
+        <p>数字信哥主持 + 会员企业家真人出镜，围绕一个“实干切片”，完整呈现创业历程、经营智慧与责任担当。</p>
+      </div>
+      <div class="card">
+        <span class="kicker gold">栏目二</span>
+        <h3>高光切片 · 60–90秒</h3>
+        <p>截取创业感悟、金句片段，剪辑多条高光短视频，分发短视频平台，由企业家本人转发扩散。</p>
+      </div>
+    </div>
+
+    <h3 class="sub-h reveal">选题库（含匹配嘉宾类型）</h3>
+    <div class="grid g2" data-stagger>
+      <div class="card flat"><span class="kicker">01</span><h3>从广西到海南：我为什么选择在自贸港重新开始</h3><p>匹配：来琼多年的桂商企业家</p></div>
+      <div class="card flat"><span class="kicker">02</span><h3>创业最难的那一年，我是怎么扛过来的</h3><p>匹配：经历过危机的企业家</p></div>
+      <div class="card flat"><span class="kicker">03</span><h3>桂商在海南：单打独斗还是抱团发展</h3><p>匹配：商会核心会员企业</p></div>
+      <div class="card flat"><span class="kicker">04</span><h3>第一笔跨境生意，教会了我什么</h3><p>匹配：跨境贸易类会员企业</p></div>
+      <div class="card flat"><span class="kicker">05</span><h3>从打工到创业，那一步是怎么迈出去的</h3><p>匹配：草根创业型企业家</p></div>
+      <div class="card flat"><span class="kicker">06</span><h3>企业做大了，为什么我开始做公益</h3><p>匹配：有社会责任实践的企业家</p></div>
+      <div class="card flat"><span class="kicker">07</span><h3>在海南做实业，最难的不是钱</h3><p>匹配：实业制造类会员企业</p></div>
+      <div class="card flat"><span class="kicker">08</span><h3>退役军人创业：纪律、韧性与生意</h3><p>匹配：退役军人委员会会员</p></div>
+      <div class="card flat"><span class="kicker">09</span><h3>女企业家在桂商群体里，怎么找到自己的位置</h3><p>匹配：妇委会会员</p></div>
+      <div class="card flat"><span class="kicker">10</span><h3>给想来海南创业的广西年轻人一句实话</h3><p>匹配：多行业企业家快答合集</p></div>
+    </div>
+
+    <h3 class="sub-h reveal">受访嘉宾筛选机制</h3>
+    <div class="acc reveal">
+      <div class="acc-item">
+        <button class="acc-head"><span class="badge">来源</span>嘉宾从哪里来<span class="arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-inner">海南省广西商会会员企业库，覆盖妇委会、退役军人委员会等各专项分支会员。</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head"><span class="badge">标准</span>筛选标准<span class="arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-inner">
+          <ul>
+            <li>企业家个人经历与本期“实干切片”主题高度相关；</li>
+            <li>负责人愿意出镜，分享机遇也愿意讲述现实困难；</li>
+            <li>拒绝纯企业广告宣传。</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head"><span class="badge">渠道</span>报名渠道<span class="arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-inner">短视频评论区报名、商会内部征集。</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head"><span class="badge">约束</span>内容约束<span class="arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-inner">嘉宾重点输出创业实践感悟，禁止硬广带货，内容提前审核。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 访谈流程 ============ -->
+  <section class="section" id="flow">
+    <div class="section-head reveal">
+      <span class="section-num">07 / PRODUCTION FLOW</span>
+      <h2>标准化访谈流程模板</h2>
+      <p class="section-desc">出镜主体：AI数字人（数字信哥·主持人）+ 受访嘉宾（会员企业家真人出镜）。点击步骤查看要点。</p>
+    </div>
+
+    <div class="steps reveal" id="steps">
+      <button class="step active" data-target="sd1"><span class="sn">STEP 01</span><span class="st">开场</span><span class="sd">5–8秒</span></button>
+      <button class="step" data-target="sd2"><span class="sn">STEP 02</span><span class="st">嘉宾引入</span><span class="sd">5秒</span></button>
+      <button class="step" data-target="sd3"><span class="sn">STEP 03</span><span class="st">核心对话</span><span class="sd">1–2分钟</span></button>
+      <button class="step" data-target="sd4"><span class="sn">STEP 04</span><span class="st">信哥总结</span><span class="sd">15秒</span></button>
+      <button class="step" data-target="sd5"><span class="sn">STEP 05</span><span class="st">结尾互动</span><span class="sd">8秒</span></button>
+    </div>
+
+    <div class="reveal">
+      <div class="step-detail active" id="sd1">
+        <div class="lead"><span class="kicker">开场 · 5–8秒</span>
+        <p style="margin-top:6px">数字信哥出镜自我介绍，抛出本期“实干切片”主题，引出受访企业家。</p></div>
+      </div>
+      <div class="step-detail" id="sd2">
+        <div class="lead"><span class="kicker">嘉宾引入 · 5秒</span>
+        <p style="margin-top:6px">企业家简单介绍个人身份、企业与来琼年份。</p></div>
+      </div>
+      <div class="step-detail" id="sd3">
+        <div class="lead"><span class="kicker">核心对话 · 1–2分钟</span>
+        <p style="margin-top:6px">数字信哥引导提问：</p>
+        <ul style="margin-top:10px;padding-left:20px;color:#41566b;font-size:14.5px">
+          <li>您是哪一年来海南的？当时为什么做出这个决定？</li>
+          <li>创业过程中最难的一个节点是什么？您是怎么扛过去的？</li>
+          <li>如果重新来一次，哪一步您会做得不一样？</li>
+          <li>对想来海南的广西年轻创业者，您想说一句什么？</li>
+        </ul>
+        <p style="margin-top:10px">企业家结合个人真实经历作答，保留停顿和语气词。</p></div>
+      </div>
+      <div class="step-detail" id="sd4">
+        <div class="lead"><span class="kicker">数字信哥总结 · 15秒</span>
+        <p style="margin-top:6px">结合企业家案例提炼实干要点，说明这段经历对同行业创业者的借鉴意义，适度点出商会可为企业提供的咨询、资源对接支持。</p></div>
+      </div>
+      <div class="step-detail" id="sd5">
+        <div class="lead"><span class="kicker">结尾互动 · 8秒</span>
+        <p style="margin-top:6px">征集观众想向企业家咨询的问题，告知商会会员可报名成为下期受访嘉宾，引导评论区留言。</p></div>
+      </div>
+    </div>
+
+    <div class="card flat reveal" style="margin-top:20px">
+      <span class="kicker gold">产出</span>
+      <p>90秒主片 + 2–3条60–90秒高光切片。</p>
+    </div>
+  </section>
+
+  <!-- ============ 08 媒介运营 ============ -->
+  <section class="section" id="media">
+    <div class="section-head reveal">
+      <span class="section-num">08 / MEDIA OPERATION</span>
+      <h2>媒介运营方案</h2>
+      <p class="section-desc">两套执行方案：短视频 & 直播营销 + 微信生态运营。</p>
+    </div>
+
+    <div class="grid g2" data-stagger>
+      <div class="media-card">
+        <h3><span>▶</span>短视频 & 直播营销方案</h3>
+        <ul class="media-list">
+          <li><span><b>更新平台：</b>视频号主阵地、抖音同步分发。</span></li>
+          <li><span><b>更新节奏：</b>每周 1 期完整版访谈；每周产出 2–3 条高光切片。</span></li>
+          <li><span><b>直播进阶：</b>AI 数字信哥直播，线上连麦多位会员企业家，实时互动交流创业经验，介绍商会会员服务。</span></li>
+          <li><span><b>话题标签：</b>#听桂商故事悟实干力量 #我的桂商实干故事。</span></li>
+        </ul>
+      </div>
+      <div class="media-card">
+        <h3><span>◎</span>微信生态运营方案</h3>
+        <ul class="media-list">
+          <li><span><b>公众号：</b>配套每期推文，包含访谈实录、企业家简介、商会会员服务介绍。</span></li>
+          <li><span><b>私域社群：</b>分发视频链接、金句长图到商会会员微信群。</span></li>
+          <li><span><b>衍生物料：</b>企业家金句表情包、一图读懂实干故事长图。</span></li>
+          <li><span><b>内容日历逻辑：</b>每周确定一位企业家主题，短视频输出切片，公众号沉淀深度访谈，社群扩散传播。</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card flat reveal" style="margin-top:18px">
+      <span class="kicker">三层分发结构</span>
+      <div class="grid g3" style="margin-top:6px">
+        <div><h3 style="font-size:15px">公域拉新</h3><p>视频号 + 抖音，高光切片、金句片段，扩大触达面。</p></div>
+        <div><h3 style="font-size:15px">深度沉淀</h3><p>公众号完整访谈实录与企业家简介，便于检索与二次引用。</p></div>
+        <div><h3 style="font-size:15px">私域转化</h3><p>商会会员群转发扩散，沉淀嘉宾报名与UGC投稿。</p></div>
+      </div>
+    </div>
+
+    <h3 class="sub-h reveal">课程版 KPI 指标</h3>
+    <div class="grid g3" data-stagger>
+      <div class="kpi"><div class="kt">传播层</div><div class="kv">短视频播放量</div><div class="kd">视频号 + 抖音双平台合计，衡量内容触达能力。</div></div>
+      <div class="kpi"><div class="kt">传播层</div><div class="kv">公众号阅读量</div><div class="kd">深度访谈实录的沉淀效果，反映内容的复用价值。</div></div>
+      <div class="kpi"><div class="kt">互动层</div><div class="kv">评论提问数量</div><div class="kd">反映观众真实困惑，是下期访谈问题的直接来源。</div></div>
+      <div class="kpi"><div class="kt">互动层</div><div class="kv">UGC 话题参与数量</div><div class="kd">#我的桂商实干故事 话题下的投稿量。</div></div>
+      <div class="kpi"><div class="kt">互动层</div><div class="kv">社群转发次数</div><div class="kd">商会会员群、朋友圈的扩散频次，衡量私域裂变。</div></div>
+      <div class="kpi"><div class="kt">转化层</div><div class="kv">收集观众问题数量</div><div class="kd">沉淀为访谈问题库与话题素材库。</div></div>
+      <div class="kpi"><div class="kt">转化层</div><div class="kv">嘉宾报名数量</div><div class="kd">持续扩充访谈嘉宾池，保障内容稳定产出。</div></div>
+    </div>
+  </section>
+
+  <!-- ============ 09 风险与可行性 ============ -->
+  <section class="section" id="risk">
+    <div class="section-head reveal">
+      <span class="section-num">09 / RISK & FEASIBILITY</span>
+      <h2>风险评估与可行性</h2>
+      <p class="section-desc">四个主要风险点，每个都有对应应对方案。</p>
+    </div>
+
+    <div class="grid g2" data-stagger>
+      <div class="risk">
+        <div class="rt"><i>1</i>企业家不愿谈“不顺利的部分”</div>
+        <div class="rs">访谈前向受访者明确栏目定位——“不宣传企业，讲个人判断”；提纲中预设“可以跳过”的问题标记，给予受访者安全感；成片优先保留受访者主动展开的困难叙述，而非强行追问。</div>
+      </div>
+      <div class="risk">
+        <div class="rt"><i>2</i>嘉宾输出偏向企业广告宣传</div>
+        <div class="rs">前期脚本沟通，明确内容边界，成片内容提前审核；访谈提纲以个人经历为主线，弱化企业产品信息。</div>
+      </div>
+      <div class="risk">
+        <div class="rt"><i>3</i>AI数字人效果生硬</div>
+        <div class="rs">数字信哥只承担串场、提问、片尾引导，不替代企业家出镜；优化台词口语化，多搭配真人嘉宾素材中和观感，台词贴合商会务实、重乡情的语言风格。</div>
+      </div>
+      <div class="risk">
+        <div class="rt"><i>4</i>三人小组产能有限，更新节奏断裂</div>
+        <div class="rs">首期不追求“完整访谈长片”，只交付90秒主片+切片；数字信哥串场素材可批量预生成，降低单期执行压力；第二期起复用形象资产与剪辑模板，边际成本递减。</div>
+      </div>
+    </div>
+
+    <div class="lead reveal" style="margin-top:22px;border-left:4px solid var(--jade)">
+      <span class="kicker">可行性总结</span>
+      <p style="margin-top:6px">全部工具学生小组可操作；海南省广西商会拥有高公信力、完善组织架构以及充足会员嘉宾资源；
+      参考真人信哥账号已有成熟内容基础，可以顺利产出样片，适配课程作业与校企竞赛。</p>
+    </div>
+  </section>
+
+  <!-- ============ 10 课程交付成果 ============ -->
+  <section class="section" id="deliver">
+    <div class="section-head reveal">
+      <span class="section-num">10 / DELIVERABLES</span>
+      <h2>课程期末全套交付成果</h2>
+      <p class="section-desc">课程要求：策划案 Word + 路演 PPT + IP/内容样片；5 分钟路演 + 3 分钟答辩。</p>
+    </div>
+
+    <div class="grid g2" data-stagger>
+      <div class="deliver">
+        <span class="dn">01</span>
+        <div><h3>《数字IP立项书》完整文档</h3><p>7 要素完整呈现，含 IP 人设、内容方向、目标受众、媒介载体、三动作与调研证据。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">02</span>
+        <div><h3>500 字策略思路文档</h3><p>核心创意、技术载体、媒介矩阵与三动作执行的凝练表达。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">03</span>
+        <div><h3>整合营销全案 Word</h3><p>IP 人设、微信生态运营方案、短视频直播营销方案、选题库、访谈流程、商会背景特点分析。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">04</span>
+        <div><h3>路演 PPT</h3><p>10–15 页，适配 5 分钟路演故事线。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">05</span>
+        <div><h3>视觉物料</h3><p>数字信哥 KV 主视觉海报、视觉规范简表（主色、辅色、字体、使用规范）。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">06</span>
+        <div><h3>视频样片</h3><p>90秒数字信哥 + 模拟企业家访谈合成样片。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">07</span>
+        <div><h3>微信衍生物料</h3><p>金句长图 / 表情包至少 1 种。</p></div>
+      </div>
+      <div class="deliver">
+        <span class="dn">08</span>
+        <div><h3>全部成果打包压缩包</h3><p>统一命名归档，便于提交与展示。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 总结 ============ -->
+  <section class="section" id="summary">
+    <div class="section-head reveal">
+      <span class="section-num">11 / SUMMARY</span>
+      <h2>总结与行动号召</h2>
+      <p class="section-desc">让企业家故事被听见，让桂商精神看得见。</p>
+    </div>
+
+    <div class="final reveal">
+      <div class="final-inner">
+        <h3>依托商会会员资源与平台优势，数字信哥对话企业家，<br>让实干故事被听见。</h3>
+        <p>既传播桂商企业家精神，也强化商会服务会员、乡情聚商的品牌形象。AI 数字人负责提问与串场，企业家输出一线实干经验，二者互补，降低内容生产门槛，打通企业家故事传播和会员企业展示的双向价值。</p>
+        <div class="slogan">琼桂聚力，听桂商讲实干人生</div>
+        <div class="slogan" style="border-left-color:#e0a92e;color:#fdf0d4;margin-top:12px">
+          听桂商故事，悟实干力量
+        </div>
+
+        <div class="actions">
+          <div class="action">
+            <span class="an">ACTION 01</span>
+            <h4>关注账号</h4>
+            <p>视频号、抖音搜索「数字信哥对话企业家」，每周更新。</p>
+          </div>
+          <div class="action">
+            <span class="an">ACTION 02</span>
+            <h4>评论提问</h4>
+            <p>留下你最想问企业家的创业问题，下期可能就由信哥替你问。</p>
+          </div>
+          <div class="action">
+            <span class="an">ACTION 03</span>
+            <h4>报名嘉宾</h4>
+            <p>商会会员企业可报名成为下期受访嘉宾，分享你的实干故事。</p>
+          </div>
+        </div>
+
+        <div class="thanks">
+          海南省广西商会 · 数字IP打造项目组 ｜ 3人小组：策划 / 媒介 / 执行<br>
+          课程作业 · 校企协作竞赛 · 方向D：企业家精神
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    数字信哥对话企业家 · 完整方案 ｜ 本页面为课程作业演示用途
+  </div>
+
+</main>
+
+<button id="toTop" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- 滚动进度条 ---------- */
+  var progress = document.getElementById('progress');
+  function updateProgress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  /* ---------- 侧边栏导航高亮 ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+
+  function setActive(id){
+    navLinks.forEach(function(l){
+      l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var navObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) setActive(en.target.id);
+      });
+    }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    sections.forEach(function(s){ navObs.observe(s); });
+  }
+
+  window.addEventListener('scroll', function(){
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) {
+      if (sections.length) setActive(sections[sections.length - 1].id);
+    }
+  }, {passive:true});
+
+  /* ---------- 移动端抽屉 ---------- */
+  var sidebar  = document.getElementById('sidebar');
+  var backdrop = document.getElementById('backdrop');
+  var menuBtn  = document.getElementById('menuBtn');
+
+  function closeNav(){
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+    menuBtn.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  function openNav(){
+    sidebar.classList.add('open');
+    backdrop.classList.add('show');
+    menuBtn.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  menuBtn.addEventListener('click', function(){
+    sidebar.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  navLinks.forEach(function(l){ l.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+
+  /* ---------- 入场动画 ---------- */
+  var stagger = Array.prototype.slice.call(document.querySelectorAll('[data-stagger]'));
+  stagger.forEach(function(c){
+    Array.prototype.forEach.call(c.children, function(ch, i){
+      ch.style.animationDelay = (i * 70) + 'ms';
+    });
+  });
+
+  var revealTargets = Array.prototype.slice.call(document.querySelectorAll('.reveal')).concat(stagger);
+
+  if ('IntersectionObserver' in window) {
+    var revObs = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          obs.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    revealTargets.forEach(function(el){ revObs.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- 选项卡 ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.tabs'), function(tabs){
+    var btns   = Array.prototype.slice.call(tabs.querySelectorAll('.tab-btn'));
+    var panels = Array.prototype.slice.call(tabs.querySelectorAll('.tab-panel'));
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        panels.forEach(function(p){ p.classList.remove('active'); });
+        btn.classList.add('active');
+        var target = tabs.querySelector('#' + btn.dataset.tab);
+        if (target) target.classList.add('active');
+      });
+    });
+  });
+
+  /* ---------- 手风琴 ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.acc-head'), function(head){
+    head.addEventListener('click', function(){
+      var item = head.parentElement;
+      var body = item.querySelector('.acc-body');
+      var group = item.parentElement;
+      var isOpen = item.classList.contains('open');
+
+      Array.prototype.forEach.call(group.querySelectorAll('.acc-item.open'), function(other){
+        if (other !== item) {
+          other.classList.remove('open');
+          var ob = other.querySelector('.acc-body');
+          if (ob) ob.style.maxHeight = '0px';
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('open');
+        body.style.maxHeight = '0px';
+      } else {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.acc-item.open'), function(item){
+    var body = item.querySelector('.acc-body');
+    if (body) body.style.maxHeight = body.scrollHeight + 'px';
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      Array.prototype.forEach.call(document.querySelectorAll('.acc-item.open .acc-body'), function(b){
+        b.style.maxHeight = b.scrollHeight + 'px';
+      });
+    }, 120);
+  });
+
+  /* ---------- 访谈流程步骤 ---------- */
+  var stepsWrap = document.getElementById('steps');
+  if (stepsWrap) {
+    var steps = Array.prototype.slice.call(stepsWrap.querySelectorAll('.step'));
+    var details = Array.prototype.slice.call(document.querySelectorAll('.step-detail'));
+    steps.forEach(function(step){
+      step.addEventListener('click', function(){
+        steps.forEach(function(s){ s.classList.remove('active'); });
+        details.forEach(function(d){ d.classList.remove('active'); });
+        step.classList.add('active');
+        var target = document.getElementById(step.dataset.target);
+        if (target) target.classList.add('active');
+      });
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    toTop.classList.toggle('show', window.pageYOffset > 600);
+  }, {passive:true});
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+})();
+</script>
+</body>
+</html>
